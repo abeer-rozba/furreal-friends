@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{owner.first_name}}'s Profile</h1>
+  <p>Username: {{owner.user.username}}</p>
+  <p>Phone Number: {{owner.phone_number}}</p>
+  <p>City: {{owner.city}}</p>
+  <a href="/my-pets/">My Pets</a>
+  <form action="/owners/{{owner.id}}/update" method="POST">
+    {% csrf_token %}
+    <button>Update Profile</button>
+  </form>
+  <form action="/owners/{{owner.id}}/delete" method="POST">
+    {% csrf_token %}
+    <button>Delete Account</button>
+  </form>
+{% endblock content %}

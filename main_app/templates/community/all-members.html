@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% for member in members %}
+  {% if member.user.id != user.id %}
+  <a href="/community/{{member.id}}"><h2>{{member.user.username}}</h2></a>
+  {% endif %}
+  {% endfor %}
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <img src="{{pet.photo}}" alt="A photo of a {{pet.species}}" width="400px">
+  <h3>{{pet.pet_name}}</h3>
+  <p>{{pet.pet_age}} years old {{pet.breed}} {{pet.species}}</p>
+  {% if pet.isFixed and pet.gender == "Male" %}
+  <p>{{pet.pet_name}} is neutered!</p>
+  {% elif pet.isFixed and pet.gender == "Female" %}
+  <p>{{pet.pet_name}} is spayed!</p>
+  {% elif not pet.isFixed and pet.gender == "Male"%}
+  <p>{{pet.pet_name}} is not neutered!</p>
+  {% elif not pet.isFixed and pet.gender == "Female"%}
+  <p>{{pet.pet_name}} is not spayed!</p>
+  {% endif %}
+  {% if pet.owner.user.id == user.id %}
+  <form action=""><button>Update Pet</button></form>
+  <form action=""><button>Delete Pet</button></form>
+  {% endif %}
+{% endblock content %}

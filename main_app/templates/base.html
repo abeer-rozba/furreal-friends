@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Furreal Friends</title>
+</head>
+<body>
+  <nav>
+    {% if user.is_authenticated %}
+      <form action="/auth/logout/" method="POST">
+        {% csrf_token %}
+        <a href="/">Home</a>
+        <a href="/pets/">Pets</a>
+        <a href="/owners/{{user.owner.id}}">Profile</a>
+        <a href="/community/">Community</a>
+        <button>Log out</button>
+      </form>
+    {% else %}
+      <a href="/signup">Sign up</a>
+      <a href="/auth/login">Log in</a>
+    {% endif %}
+  </nav>
+  {% block content %}{% endblock content %}
+</body>
+</html>

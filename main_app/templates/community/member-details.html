@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{member.first_name}}'s Profile</h1>
+  <p>Username: {{member.user.username}}</p>
+  <p>Phone Number: {{member.phone_number}}</p>
+  <p>City: {{member.city}}</p>
+  <button>Follow</button>
+{% endblock content %}
