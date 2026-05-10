@@ -14,7 +14,13 @@
   <p>{{pet.pet_name}} is not spayed!</p>
   {% endif %}
   {% if pet.owner.user.id == user.id %}
-  <form action="/pets/{{pet.id}}/update"><button>Update Pet</button></form>
-  <form action=""><button>Delete Pet</button></form>
+  <form action="/pets/{{pet.id}}/update">
+    {% csrf_token %}
+    <button>Update Pet</button>
+  </form>
+  <form action="/pets/{{pet.id}}/delete" method="POST">
+    {% csrf_token %}
+    <button>Delete Pet</button>
+  </form>
   {% endif %}
 {% endblock content %}

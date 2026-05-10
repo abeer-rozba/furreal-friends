@@ -137,3 +137,9 @@ class PetUpdateView(UpdateView):
     def form_valid(self, form):
         form.instance.owner = self.request.user.owner
         return super().form_valid(form)
+
+
+class PetDeleteView(DeleteView):
+    model = Pet
+    success_url = "/my-pets/"
+    pk_url_kwarg = "id"
