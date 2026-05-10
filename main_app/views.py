@@ -123,3 +123,17 @@ class MyPetsListView(ListView):
     model = Pet
     template_name = "pets/my-pets.html"
     context_object_name = "pets"
+
+
+class PetUpdateView(UpdateView):
+    model = Pet
+    template_name = "pets/pet-form.html"
+    form_class = PetForm
+    pk_url_kwarg = "id"
+
+    def get_success_url(self):
+        return f"/pets/{self.object.id}"
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user.owner
+        return super().form_valid(form)
