@@ -20,3 +20,16 @@ class PetForm(forms.ModelForm):
             "gender",
             "isFixed",
         ]
+
+
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = [
+            "title",
+            "location",
+            "description",
+            "capacity",
+            "mustReserve",
+            "attendees",
+        ]
