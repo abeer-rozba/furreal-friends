@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <img src="{{event.image}}">
+  <h1>{{event.title}} | {{event.location}}</h1>
+  <h4>Hosted by: <a href="/community/{{event.host.id}}">{{event.host}}</a></h4>
+  <p>{{event.description}}</p>
+  {% if hasFees %}
+  <p>Price: <b>{{event.price}}</b></p>
+  {% endif %}
+{% endblock content %}
