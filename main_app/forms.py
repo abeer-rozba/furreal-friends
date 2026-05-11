@@ -29,7 +29,6 @@ class EventForm(forms.ModelForm):
             "title",
             "location",
             "description",
-            "capacity",
-            "mustReserve",
-            "attendees",
+            "hasFees",
+            "price",
         ]

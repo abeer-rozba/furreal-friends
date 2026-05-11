@@ -43,6 +43,6 @@ class Event(models.Model):
     title = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
     description = models.TextField()
-    capacity = models.IntegerField()
-    mustReserve = models.BooleanField()
+    hasFees = models.BooleanField()
+    price = models.FloatField(null=True)
     attendees = models.ManyToManyField("Owner", blank=True)
