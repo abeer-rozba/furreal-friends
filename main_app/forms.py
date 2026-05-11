@@ -29,6 +29,7 @@ class EventForm(forms.ModelForm):
             "title",
             "location",
             "description",
+            "image",
             "hasFees",
             "price",
         ]
