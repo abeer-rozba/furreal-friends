@@ -11,6 +11,7 @@ urlpatterns = [
     path("owners/<int:id>/delete", views.OwnerDeleteView.as_view()),
     path("community/", views.CommunityListView.as_view()),
     path("community/<int:id>", views.CommunityDetailView.as_view()),
+    path("community/<int:id>/pets", views.MemberPetsDetailView.as_view()),
     path("my-pets/", views.MyPetsListView.as_view()),
     path("pets/", views.PetListView.as_view()),
     path("pets/new/", views.PetCreateView.as_view()),

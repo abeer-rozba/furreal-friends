@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h3>{{member.first_name}}'s Pets:</h3>
+  {% for pet in member.pets.all %}
+  {% if pet.owner.id == member.id %}
+  <a href="/pets/{{pet.id}}">{{pet.pet_name}}</a>
+  {% endif %}
+  {% endfor %}
+{% endblock content %}

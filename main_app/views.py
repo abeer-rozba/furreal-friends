@@ -125,6 +125,13 @@ class MyPetsListView(ListView):
     context_object_name = "pets"
 
 
+class MemberPetsDetailView(DetailView):
+    model = Owner
+    template_name = "pets/member-pets.html"
+    context_object_name = "member"
+    pk_url_kwarg = "id"
+
+
 class PetUpdateView(UpdateView):
     model = Pet
     template_name = "pets/pet-form.html"
