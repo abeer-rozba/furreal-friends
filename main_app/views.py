@@ -161,3 +161,9 @@ class EventCreateView(CreateView):
     def form_valid(self, form):
         form.instance.host = self.request.user
         return super().form_valid(form)
+
+
+class EventListView(ListView):
+    model = Event
+    template_name = "pet-events/all-events.html"
+    context_object_name = "events"
