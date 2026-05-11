@@ -1,5 +1,5 @@
 from django import forms
-from .models import Owner, Pet
+from .models import Owner, Pet, Event
 
 
 class OwnerForm(forms.ModelForm):
