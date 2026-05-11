@@ -3,7 +3,7 @@
 {% block content %}
   <img src="{{pet.photo}}" alt="A photo of a {{pet.species}}" width="400px">
   <h3>{{pet.pet_name}}</h3>
-  <p>{{pet.pet_age}} years old {{pet.breed}} {{pet.species}}</p>
+  <p>{{pet.pet_age}} {% if pet.pet_age == 1 %}year{% else %}years{% endif %} old {{pet.breed}} {{pet.species}}</p>
   {% if pet.isFixed and pet.gender == "Male" %}
   <p>{{pet.pet_name}} is neutered!</p>
   {% elif pet.isFixed and pet.gender == "Female" %}
@@ -22,5 +22,9 @@
     {% csrf_token %}
     <button>Delete Pet</button>
   </form>
+  {% elif pet.owner.user.id != user.id and pet.id in user.owner.pet.friends %}
+  <button>Unfriend</button>
+  {% else %}
+  <button>Befriend</button>
   {% endif %}
 {% endblock content %}

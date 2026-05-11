@@ -12,8 +12,8 @@
         {% csrf_token %}
         <a href="/">Home</a>
         <a href="/pets/">Pets</a>
-        <a href="/owners/{{user.owner.id}}">Profile</a>
         <a href="/community/">Community</a>
+        <a href="/owners/{{user.owner.id}}">Profile</a>
         <button>Log out</button>
       </form>
     {% else %}
