@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <a href="/events/new">New Event</a>
+  {% for event in events %}
+  <img src="{{event.image}}">
+  <a href="/events/{{event.id}}">{{event.title}}</a>
+  {% endfor %}
+{% endblock content %}

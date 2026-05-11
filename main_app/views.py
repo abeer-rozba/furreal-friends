@@ -11,8 +11,8 @@ from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Owner, Pet
-from .forms import OwnerForm, PetForm
+from .models import Owner, Pet, Event
+from .forms import OwnerForm, PetForm, EventForm
 
 
 # Create your views here.
@@ -150,3 +150,14 @@ class PetDeleteView(DeleteView):
     model = Pet
     success_url = "/my-pets/"
     pk_url_kwarg = "id"
+
+
+class EventCreateView(CreateView):
+    model = Event
+    form_class = EventForm
+    template_name = "pet-events/event-form.html"
+    success_url = "/events/"
+
+    def form_valid(self, form):
+        form.instance.host = self.request.user
+        return super().form_valid(form)
