@@ -6,6 +6,9 @@
   <h4>Hosted by: <a href="/community/{{event.host.id}}">{{event.host}}</a></h4>
   <p>{{event.description}}</p>
   {% if hasFees %}
-  <p>Price: <b>{{event.price}}</b></p>
+  <p>Entry Fee: <b>{{event.price}} BD</b></p>
+  {% else %}
+  <p>Entrance to this event is <b>FREE</b></p>
   {% endif %}
+  <button>Register</button>
 {% endblock content %}

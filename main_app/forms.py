@@ -27,9 +27,10 @@ class EventForm(forms.ModelForm):
         model = Event
         fields = [
             "title",
-            "location",
-            "description",
             "image",
+            "location",
+            "date_time",
+            "description",
             "hasFees",
             "price",
         ]

@@ -40,9 +40,11 @@ class Event(models.Model):
     host = models.ForeignKey(
         Owner, on_delete=models.CASCADE, related_name="hosted_event"
     )
+
     image = models.CharField()
     title = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
+    date_time = models.DateTimeField()
     description = models.TextField()
     hasFees = models.BooleanField()
     price = models.FloatField(null=True)
