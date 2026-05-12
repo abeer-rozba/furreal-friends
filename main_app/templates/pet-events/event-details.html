@@ -5,7 +5,7 @@
   <h1>{{event.title}} | {{event.location}}</h1>
   <h4>Hosted by: <a href="/community/{{event.host.id}}">{{event.host}}</a></h4>
   <p>{{event.description}}</p>
-  {% if hasFees %}
+  {% if event.hasFees %}
   <p>Entry Fee: <b>{{event.price}} BD</b></p>
   {% else %}
   <p>Entrance to this event is <b>FREE</b></p>

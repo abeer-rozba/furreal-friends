@@ -159,7 +159,7 @@ class EventCreateView(CreateView):
     success_url = "/events/"
 
     def form_valid(self, form):
-        form.instance.host = self.request.user
+        form.instance.host = self.request.user.owner
         return super().form_valid(form)
 
 
