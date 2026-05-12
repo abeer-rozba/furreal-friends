@@ -174,3 +174,9 @@ class EventDetailView(DetailView):
     template_name = "pet-events/event-details.html"
     context_object_name = "event"
     pk_url_kwarg = "id"
+
+
+class MyEventsListView(ListView):
+    model = Event
+    template_name = "pet-events/my-events.html"
+    context_object_name = "events"

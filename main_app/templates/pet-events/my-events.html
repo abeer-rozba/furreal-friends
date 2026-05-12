@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <a href="/events/new">New Event</a>
+  <br>
+  {% for event in events %}
+    {% if event.host.id == user.owner.id %}
+      <img src="{{event.image}}" width="300px"><br>
+      <a href="/events/{{event.id}}">{{event.title}}</a>
+    {% endif %}
+  {% endfor %}
+{% endblock content %}
