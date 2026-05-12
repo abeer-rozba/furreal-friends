@@ -5,6 +5,17 @@
   <p>Username: {{member.user.username}}</p>
   <p>Phone Number: {{member.phone_number}}</p>
   <p>City: {{member.city}}</p>
+  <p>Followers: {{member.followers.count}}</p>
+  <p>Following: {{member.following.count}}</p>
   <a href="/community/{{member.id}}/pets">View {{member.first_name}}'s Pets</a>
-  <button>Follow</button>
+  {% if request.user.owner != member %}
+  <form action="/community/{{member.id}}/follow/" method="POST">
+    {% csrf_token %}
+    {% if member in request.user.owner.following.all %}
+      <button type="submit">Unfollow</button>
+    {% else %}
+      <button type="submit">Follow</button>
+    {% endif %}
+  </form>
+  {% endif %}
 {% endblock content %}

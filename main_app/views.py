@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import (
     CreateView,
     ListView,
@@ -25,6 +25,19 @@ def check_profile(request):
     if hasattr(request.user, "owner"):
         return redirect("/")
     return redirect("/owners/new/")
+
+
+@login_required
+def toggle_follow(request, id):
+    user_account = request.user.owner
+    target_account = get_object_or_404(Owner, id=id)
+
+    if user_account != target_account:
+        if target_account in user_account.following.all():
+            user_account.following.remove(target_account)
+        else:
+            user_account.following.add(target_account)
+    return redirect(f"/community/{id}")
 
 
 class SignUpView(CreateView):

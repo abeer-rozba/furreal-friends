@@ -20,6 +20,9 @@ class Owner(models.Model):
     last_name = models.CharField(max_length=50)
     phone_number = PhoneNumberField(region="BH", validators=[only_bh_numbers])
     city = models.CharField(max_length=50)
+    following = models.ManyToManyField(
+        "self", symmetrical=False, related_name="followers", blank=True
+    )
 
     def __str__(self):
         return self.first_name
