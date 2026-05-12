@@ -194,3 +194,9 @@ class EventUpdateView(UpdateView):
     def form_valid(self, form):
         form.instance.host = self.request.user.owner
         return super().form_valid(form)
+
+
+class EventDeleteView(DeleteView):
+    model = Event
+    success_url = "/events/my-events/"
+    pk_url_kwarg = "id"
