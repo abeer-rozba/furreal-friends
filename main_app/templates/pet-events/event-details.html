@@ -5,17 +5,18 @@
   <h1>{{event.title}} | {{event.location}}</h1>
   <h4>Hosted by: <a href="/community/{{event.host.id}}">{{event.host}}</a></h4>
   <p>{{event.description}}</p>
+  <p>Date & Time: <b>{{event.date_time}}</b></p>
   {% if event.hasFees %}
   <p>Entry Fee: <b>{{event.price}} BD</b></p>
   {% else %}
   <p>Entrance to this event is <b>FREE</b></p>
   {% endif %}
   {% if event.host.id == user.owner.id %}
-  <form action="">
+  <form action="/events/{{event.id}}/update">
     {% csrf_token %}
     <button>Update Event</button>
   </form>
-  <form action="">
+  <form action="/events/{{event.id}}/delete" method="POST">
     {% csrf_token %}
     <button>Delete Event</button>
   </form>

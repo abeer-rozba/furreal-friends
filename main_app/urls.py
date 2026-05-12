@@ -22,4 +22,5 @@ urlpatterns = [
     path("events/", views.EventListView.as_view()),
     path("events/<int:id>", views.EventDetailView.as_view()),
     path("events/my-events/", views.MyEventsListView.as_view()),
+    path("events/<int:id>/update", views.EventUpdateView.as_view()),
 ]

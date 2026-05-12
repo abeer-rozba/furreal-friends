@@ -180,3 +180,17 @@ class MyEventsListView(ListView):
     model = Event
     template_name = "pet-events/my-events.html"
     context_object_name = "events"
+
+
+class EventUpdateView(UpdateView):
+    model = Event
+    template_name = "pet-events/event-form.html"
+    form_class = EventForm
+    pk_url_kwarg = "id"
+
+    def get_success_url(self):
+        return f"/events/{self.object.id}"
+
+    def form_valid(self, form):
+        form.instance.host = self.request.user.owner
+        return super().form_valid(form)
