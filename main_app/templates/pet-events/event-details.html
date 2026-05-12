@@ -10,5 +10,16 @@
   {% else %}
   <p>Entrance to this event is <b>FREE</b></p>
   {% endif %}
-  <button>Register</button>
+  {% if event.host.id == user.owner.id %}
+  <form action="">
+    {% csrf_token %}
+    <button>Update Event</button>
+  </form>
+  <form action="">
+    {% csrf_token %}
+    <button>Delete Event</button>
+  </form>
+  {% else %}
+    <button>Register</button>
+  {% endif %}
 {% endblock content %}
