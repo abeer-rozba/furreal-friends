@@ -5,6 +5,9 @@
   <p>Username: {{owner.user.username}}</p>
   <p>Phone Number: {{owner.phone_number}}</p>
   <p>City: {{owner.city}}</p>
+  <p>Followers: {{owner.followers.count}}</p>
+  <p>Following: {{owner.following.count}}</p>
+
   <a href="/my-pets/">My Pets</a>
   <a href="/events/my-events/">My Events</a>
   <form action="/owners/{{owner.id}}/update" method="POST">
