@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 import phonenumbers
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -44,7 +45,7 @@ class Event(models.Model):
     image = models.CharField()
     title = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
-    date_time = models.DateTimeField()
+    date_time = models.DateTimeField(null=True, blank=True, default=timezone.now)
     description = models.TextField()
     hasFees = models.BooleanField()
     price = models.FloatField(null=True)

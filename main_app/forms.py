@@ -34,3 +34,8 @@ class EventForm(forms.ModelForm):
             "hasFees",
             "price",
         ]
+        widgets = {
+            "date_time": forms.DateTimeInput(
+                attrs={"type": "datetime-local"}, format="%Y-%m-%dT%H:%M"
+            ),
+        }
