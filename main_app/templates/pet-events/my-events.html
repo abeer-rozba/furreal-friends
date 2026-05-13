@@ -3,8 +3,24 @@
 {% block content %}
   <a href="/events/new">New Event</a>
   <br>
-  {% for event in events %}
-  <img src="{{event.image}}" width="300px"><br>
-  <a href="/events/{{event.id}}">{{event.title}}</a>
+  <h2>Hosted Events:</h2>
+  {% for event in owner.hosted_event.all %}
+    <img src="{{event.image}}" width="300px"><br>
+    <a href="/events/{{event.id}}">{{event.title}}</a> <br> <br>
+  {% empty %}
+    <p>You haven't hosted any events yet.</p>
+  {% endfor %}
+  <h2>Registered Events:</h2>
+  {% for event in owner.event_set.all %}
+    {% if event.host != owner %}
+      <img src="{{event.image}}" width="300px"><br>
+      <a href="/events/{{event.id}}">{{event.title}}</a>
+      <form action="/events/{{event.id}}/register/" method="POST">
+        {% csrf_token %}
+        <button type="submit">Unregister</button>
+      </form>
+    {% endif %}
+    {% empty %}
+    <p>You haven't registered for any events yet.</p>
   {% endfor %}
 {% endblock content %}

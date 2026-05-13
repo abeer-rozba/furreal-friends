@@ -224,6 +224,11 @@ class MyEventsListView(ListView):
     template_name = "pet-events/my-events.html"
     context_object_name = "events"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["owner"] = self.request.user.owner
+        return context
+
 
 class EventUpdateView(UpdateView):
     model = Event
