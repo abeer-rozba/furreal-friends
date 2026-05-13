@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <a href="/">Back</a> <br>
-  {% for event in events %}
-  <img src="{{event.image}}" width="300px"><br>
-  <a href="/events/{{event.id}}">{{event.title}}</a>
-  {% endfor %}
+  <h2 class="section-title">Events</h2>
+  <a href="/" class="back-link">← Back</a>
+
+  <section class="events-grid">
+    {% for event in events %}
+      <div class="card event-card">
+        <img src="{{event.image}}" alt="{{event.title}}"><br>
+        <h3>{{event.title}}</h3>
+        <p class="event-location">📍 {{ event.location }}</p>
+        <p class="event-date">🕒 {{ event.date_time }}</p>
+        <a href="/events/{{event.id}}" class="btn btn-primary">View Event</a>
+      </div>
+    {% endfor %}
+  </section>
 {% endblock content %}
