@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Sign Up</h1>
-  <form method="POST">
-    {% csrf_token %}
-    {{form}}
-    <button>Sign up</button>
-  </form>
+  <div class="auth-container">
+    <div class="auth-card">
+      <h1 class="auth-title">Sign Up</h1>
+      <form method="POST">
+        {% csrf_token %}
+        {{form}}
+        <button>Sign up</button>
+      </form>
+    </div>
+  </div>
 {% endblock content %}
 
