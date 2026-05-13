@@ -315,6 +315,14 @@ form {
   margin-bottom: 1rem;
 }
 
+.profile-actions form button.btn-secondary {
+  background-color: #b82727;
+}
+
+.profile-actions form button.btn-secondary:hover {
+  background-color: #b56565;
+}
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;

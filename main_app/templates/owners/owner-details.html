@@ -1,22 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>{{owner.first_name}}'s Profile</h1>
-  <p>Username: {{owner.user.username}}</p>
-  <p>Phone Number: {{owner.phone_number}}</p>
-  <p>City: {{owner.city}}</p>
-  <p>Followers: {{owner.followers.count}}</p>
-  <p>Following: {{owner.following.count}}</p>
+  <section class="profile-card card">
+    <h1 class="profile-name">{{owner.first_name}} {{owner.last_name}}</h1>
+    <p class="profile-username">@{{owner.user.username}}</p>
+    <div class="profile-info">
+      <p><strong>City: </strong>{{owner.city}}</p>
+      <p><strong>Phone: </strong>{{owner.phone_number}}</p>
+    </div>
+    <div class="profile-stats">
+      <div>
+        <h3>{{owner.followers.count}}</h3>
+        <p>Followers</p>
+      </div>
+      <div>
+        <h3>{{owner.following.count}}</h3>
+        <p>Following</p>
+      </div>
+    </div>
 
-  <a href="/my-pets/">My Pets</a>
-  <a href="/events/my-events/">My Events</a>
-  <form action="/owners/{{owner.id}}/update" method="POST">
-    {% csrf_token %}
-    <button>Update Profile</button>
-  </form>
-  <form action="/owners/{{owner.id}}/delete" method="POST">
-    {% csrf_token %}
-    <button>Delete Account</button>
-  </form>
-  <a href="/">Back</a>
+    <div class="profile-actions">
+      <a href="/my-pets/" class="btn btn-secondary">My Pets</a>
+      <a href="/events/my-events/" class="btn btn-secondary">My Events</a>
+    </div>
+
+    <div class="profile-actions">
+      <form action="/owners/{{owner.id}}/update" method="POST">
+        {% csrf_token %}
+        <button class="btn btn-primary">Update Profile</button>
+      </form>
+      <form action="/owners/{{owner.id}}/delete" method="POST">
+        {% csrf_token %}
+        <button class="btn btn-secondary">Delete Account</button>
+      </form>
+    </div>
+    <a href="/" class="back-link">← Back</a>
+  </section>
 {% endblock content %}
