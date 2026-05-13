@@ -460,6 +460,26 @@ form {
   color: #6b4f3a;
 }
 
+h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  color: #3d2f25;
+}
+
+.events-grid .card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.events-grid form {
+  margin-top: auto;
+}
+
+.events-grid button {
+  width: 100%;
+}
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;

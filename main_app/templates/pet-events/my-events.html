@@ -1,27 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <a href="/events/new">New Event</a>
-  <br>
+  <h2 class="section-title">My Events</h2>
+  <a href="/events/new" class="btn btn-primary">+ New Event</a>
+  <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid #eee;">
   <h2>Hosted Events:</h2>
-  {% for event in owner.hosted_event.all %}
-    <img src="{{event.image}}" width="300px"><br>
-    <a href="/events/{{event.id}}">{{event.title}}</a> <br> <br>
-  {% empty %}
-    <p>You haven't hosted any events yet.</p>
-  {% endfor %}
-  <h2>Registered Events:</h2>
-  {% for event in owner.event_set.all %}
+  <section class="events-grid">
+    {% for event in owner.hosted_event.all %}
+      <div class="card event-card">
+        <img src="{{event.image}}" alt="{{event.title}}">
+        <h3>{{event.title}}</h3>
+        <a href="/events/{{event.id}}" class="btn btn-primary">View</a>
+      </div>
+    {% empty %}
+      <p>You haven't hosted any events yet.</p>
+    {% endfor %}
+  </section>
+
+  <h3 style="margin-top:0.2rem;">Registered Events</h3>
+  <section class="events-grid">
+    {% for event in owner.event_set.all %}
     {% if event.host != owner %}
-      <img src="{{event.image}}" width="300px"><br>
-      <a href="/events/{{event.id}}">{{event.title}}</a>
-      <form action="/events/{{event.id}}/register/" method="POST">
-        {% csrf_token %}
-        <button type="submit">Unregister</button>
-      </form>
+
+      <div class="card event-card">
+        <img src="{{event.image}}" alt="{{event.title}}">
+        <h3>{{event.title}}</h3>
+        <a href="/events/{{event.id}}" class="btn btn-primary">View</a>
+        <form action="/events/{{event.id}}/register/" method="POST">
+          {% csrf_token %}
+          <button type="submit" class="btn-secondary">Unregister</button>
+        </form>
+      </div>
     {% endif %}
     {% empty %}
-    <p>You haven't registered for any events yet.</p>
-  {% endfor %}
-  <a href="/owners/{{owner.id}}">Back</a>
+      <p>You haven't registered for any events yet.</p>
+    {% endfor %}
+  </section>
+
+  <a href="/owners/{{owner.id}}" class="back-link">← Back</a>
 {% endblock content %}
