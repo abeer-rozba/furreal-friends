@@ -1,12 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <a href="/pets/new">Add Pet</a>
-  {% for pet in user.owner.pets.all %}
-  <img src="{{pet.photo}}" width="200px">
-    <a href="/pets/{{pet.id}}">{{pet.pet_name}}</a>
-  {% empty %}
-  <p>You have not added your pets yet.</p>
-  {% endfor %}
-  <a href="/owners/{{user.owner.id}}">Back</a>
+<section class="pet-page">
+  <div class="page-header">
+    <h2 class="section-title">My Pets</h2>
+    <a href="/pets/new" class="btn btn-primary">+ Add Pet</a>
+  </div>
+
+  <div class="pets-grid">
+    {% for pet in user.owner.pets.all %}
+      <div class="card pet-card">
+        <img src="{{pet.photo}}" alt="{{pet.species}}" class="pet-image">
+        <h3 class="pet-name">{{pet.pet_name}}</h3>
+        <a href="/pets/{{pet.id}}" class="btn btn-secondary">View</a>
+      </div>
+    {% empty %}
+      <div class="empty-state">
+        <p>You have not added your pets yet.</p>
+      </div>
+    {% endfor %}
+  </div>
+  <a href="/owners/{{user.owner.id}}" class="back-link">← Back to profile</a>
+</section>
 {% endblock content %}
