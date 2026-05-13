@@ -7,13 +7,13 @@
 </head>
 <body>
   <nav>
+      <a href="/">Home</a>
+      <a href="/pets/">Pets</a>
+      <a href="/community/">Community</a>
+      <a href="/events/">Events</a>
     {% if user.is_authenticated %}
       <form action="/auth/logout/" method="POST">
         {% csrf_token %}
-        <a href="/">Home</a>
-        <a href="/pets/">Pets</a>
-        <a href="/community/">Community</a>
-        <a href="/events/">Events</a>
         <a href="/owners/{{user.owner.id}}">Profile</a>
         <button>Log out</button>
       </form>

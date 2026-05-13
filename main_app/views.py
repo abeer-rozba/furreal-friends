@@ -40,6 +40,7 @@ def toggle_follow(request, id):
     return redirect(f"/community/{id}")
 
 
+@login_required
 def toggle_register(request, id):
     event = get_object_or_404(Event, id=id)
     owner = request.user.owner
@@ -58,7 +59,7 @@ class SignUpView(CreateView):
     success_url = "/auth/login"
 
 
-class OwnerCreateView(CreateView):
+class OwnerCreateView(LoginRequiredMixin, CreateView):
     model = Owner
     form_class = OwnerForm
     success_url = "/"
@@ -69,14 +70,14 @@ class OwnerCreateView(CreateView):
         return super().form_valid(form)
 
 
-class OwnerDetailView(DetailView):
+class OwnerDetailView(LoginRequiredMixin, DetailView):
     model = Owner
     template_name = "owners/owner-details.html"
     context_object_name = "owner"
     pk_url_kwarg = "id"
 
 
-class OwnerUpdateView(UpdateView):
+class OwnerUpdateView(LoginRequiredMixin, UpdateView):
     model = Owner
     template_name = "owners/owner-form.html"
     form_class = OwnerForm
@@ -90,7 +91,7 @@ class OwnerUpdateView(UpdateView):
         return super().form_valid(form)
 
 
-class OwnerDeleteView(DeleteView):
+class OwnerDeleteView(LoginRequiredMixin, DeleteView):
     model = Owner
     pk_url_kwarg = "id"
     success_url = "/signup/"
@@ -118,7 +119,7 @@ class CommunityDetailView(DetailView):
     pk_url_kwarg = "id"
 
 
-class PetCreateView(CreateView):
+class PetCreateView(LoginRequiredMixin, CreateView):
     model = Pet
     form_class = PetForm
     template_name = "pets/pet-form.html"
@@ -144,20 +145,20 @@ class PetListView(ListView):
     context_object_name = "pets"
 
 
-class MyPetsListView(ListView):
+class MyPetsListView(LoginRequiredMixin, ListView):
     model = Pet
     template_name = "pets/my-pets.html"
     context_object_name = "pets"
 
 
-class MemberPetsDetailView(DetailView):
+class MemberPetsDetailView(LoginRequiredMixin, DetailView):
     model = Owner
     template_name = "pets/member-pets.html"
     context_object_name = "member"
     pk_url_kwarg = "id"
 
 
-class PetUpdateView(UpdateView):
+class PetUpdateView(LoginRequiredMixin, UpdateView):
     model = Pet
     template_name = "pets/pet-form.html"
     form_class = PetForm
@@ -171,13 +172,13 @@ class PetUpdateView(UpdateView):
         return super().form_valid(form)
 
 
-class PetDeleteView(DeleteView):
+class PetDeleteView(LoginRequiredMixin, DeleteView):
     model = Pet
     success_url = "/my-pets/"
     pk_url_kwarg = "id"
 
 
-class EventCreateView(CreateView):
+class EventCreateView(LoginRequiredMixin, CreateView):
     model = Event
     form_class = EventForm
     template_name = "pet-events/event-form.html"
@@ -219,7 +220,7 @@ class EventDetailView(DetailView):
         return context
 
 
-class MyEventsListView(ListView):
+class MyEventsListView(LoginRequiredMixin, ListView):
     model = Event
     template_name = "pet-events/my-events.html"
     context_object_name = "events"
@@ -230,7 +231,7 @@ class MyEventsListView(ListView):
         return context
 
 
-class EventUpdateView(UpdateView):
+class EventUpdateView(LoginRequiredMixin, UpdateView):
     model = Event
     template_name = "pet-events/event-form.html"
     form_class = EventForm
@@ -244,7 +245,7 @@ class EventUpdateView(UpdateView):
         return super().form_valid(form)
 
 
-class EventDeleteView(DeleteView):
+class EventDeleteView(LoginRequiredMixin, DeleteView):
     model = Event
     success_url = "/events/my-events/"
     pk_url_kwarg = "id"
