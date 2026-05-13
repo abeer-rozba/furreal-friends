@@ -22,7 +22,9 @@
     {% csrf_token %}
     <button>Delete Pet</button>
   </form>
+  <a href="/my-pets/">Back</a>
   {% else %}
   <p><b>Owner: </b><a href="/community/{{pet.owner.id}}">{{pet.owner.first_name}} {{pet.owner.last_name}}</a></p>
+  <a href="/pets/">Back</a>
   {% endif %}
 {% endblock content %}

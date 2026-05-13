@@ -7,4 +7,5 @@
   <a href="/pets/{{pet.id}}">{{pet.pet_name}}</a>
   {% endif %}
   {% endfor %}
+  <a href="/community/{{pet.owner.id}}">Back</a>
 {% endblock content %}
