@@ -1,5 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Homepage</h1>
+<section class="slogan">
+  <h2 class="slogan-title">Where every connection is fur real,</h2>
+  <h4 class="slogan-subtitle">stay pawsitively connected</h4>
+</section>
+
+<section class="feed-preview">
+
+  <div class="card">
+    <h3>🐶 New pets joined</h3>
+    <p>Discover the latest furry friends added to the community.</p>
+    <a href="/pets/">View new pets →</a>
+  </div>
+
+  <div class="card">
+    <h3>🎉 Upcoming events</h3>
+    <p>Don’t miss meetups and pet-friendly gatherings happening soon.</p>
+    <a href="/events/">See events →</a>
+  </div>
+
+  <div class="card">
+    <h3>👥 Active community</h3>
+    <p>Connect with owners who are currently active and growing their pet network.</p>
+    <a href="/community/">Explore community →</a>
+  </div>
+
+</section>
 {% endblock content %}
