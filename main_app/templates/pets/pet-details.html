@@ -22,9 +22,7 @@
     {% csrf_token %}
     <button>Delete Pet</button>
   </form>
-  {% elif pet.owner.user.id != user.id and pet.id in user.owner.pet.friends %}
-  <button>Unfriend</button>
   {% else %}
-  <button>Befriend</button>
+  <p><b>Owner: </b><a href="/community/{{pet.owner.id}}">{{pet.owner.first_name}} {{pet.owner.last_name}}</a></p>
   {% endif %}
 {% endblock content %}

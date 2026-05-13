@@ -40,6 +40,24 @@ def toggle_follow(request, id):
     return redirect(f"/community/{id}")
 
 
+def toggle_friend(request, id):
+    target_pet = get_object_or_404(Pet, id=id)
+    user_pet = request.user.owner.pets.first()
+
+    if not user_pet:
+        return redirect(f"/pets/{id}")
+
+    if user_pet == target_pet:
+        return redirect(f"/pets/{id}")
+
+    if target_pet in user_pet.friends.all():
+        user_pet.friends.remove(target_pet)
+    else:
+        user_pet.friends.add(target_pet)
+
+    return redirect(f"/pets/{id}")
+
+
 class SignUpView(CreateView):
     template_name = "registration/signup.html"
     form_class = UserCreationForm

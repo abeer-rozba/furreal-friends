@@ -37,7 +37,6 @@ class Pet(models.Model):
     gender = models.CharField(max_length=6)
     isFixed = models.BooleanField()
     owner = models.ForeignKey(Owner, on_delete=models.CASCADE, related_name="pets")
-    friends = models.ManyToManyField("self", blank=True)
 
 
 class Event(models.Model):
