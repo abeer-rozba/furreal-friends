@@ -1,14 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form method="POST">
+<div class="auth-container">
+  <div class="auth-card">
+    <h1 class="auth-title">
+      {% if form.instance.id %}
+        Update Event
+      {% else %}
+        Create Event
+      {% endif %}
+    </h1>
+    <form method="POST">
   {% csrf_token %}
-  {{form}}
+  <div class="form-fields">
+    {{form}}
+  </div>
+
   {% if form.instance.id %}
-  <button>Update Event</button>
+  <button type="submit" class="btn-primary">Update Event</button>
   {% else %}
-  <button>Add Event</button>
+  <button type="submit" class="btn-primary">Add Event</button>
   {% endif %}
 </form>
-  <a href="/events/my-events">Cancel</a>
+  <a href="/events/my-events" class="back-link">← Cancel</a>
+  </div>
+</div>
 {% endblock content %}

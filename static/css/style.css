@@ -430,6 +430,36 @@ form {
   background-color: #b56565;
 }
 
+.form-fields p {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-fields input,
+.form-fields select,
+.form-fields textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e6dcd3;
+  border-radius: 12px;
+  font: inherit;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.form-fields input:focus,
+.form-fields select:focus,
+.form-fields textarea:focus {
+  border-color: #f4a261;
+}
+
+.form-fields label {
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  color: #6b4f3a;
+}
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
