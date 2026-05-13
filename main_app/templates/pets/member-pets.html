@@ -3,9 +3,9 @@
 {% block content %}
   <h3>{{member.first_name}}'s Pets:</h3>
   {% for pet in member.pets.all %}
-  {% if pet.owner.id == member.id %}
   <a href="/pets/{{pet.id}}">{{pet.pet_name}}</a>
-  {% endif %}
+  {% empty %}
+    <p>{{member.first_name}} has not added any pets yet.</p>
   {% endfor %}
   <a href="/community/{{pet.owner.id}}">Back</a>
 {% endblock content %}

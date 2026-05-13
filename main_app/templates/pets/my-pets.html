@@ -2,10 +2,11 @@
 
 {% block content %}
   <a href="/pets/new">Add Pet</a>
-  {% for pet in pets %}
-    {% if pet.owner.user.id == user.id %}
+  {% for pet in user.owner.pets.all %}
+  <img src="{{pet.photo}}" width="200px">
     <a href="/pets/{{pet.id}}">{{pet.pet_name}}</a>
-    {% endif %}
+  {% empty %}
+  <p>You have not added your pets yet.</p>
   {% endfor %}
   <a href="/owners/{{user.owner.id}}">Back</a>
 {% endblock content %}
