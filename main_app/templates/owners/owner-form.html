@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Owner Profile</h1>
-  <form method="POST">
-    {% csrf_token %}
-    {{form}}
-    <button>Save</button>
-  </form>
-  <a href="/owners/{{user.owner.id}}">Cancel</a>
+  <div class="auth-container">
+    <div class="auth-card">
+      <h1 class="auth-title">Edit Profile</h1>
+
+      <form method="POST">
+        {% csrf_token %}
+        {{form}}
+        <button>Save Changes</button>
+      </form>
+
+      <a href="/owners/{{user.owner.id}}" class="back-link">Cancel</a>
+    </div>
+  </div>
+
 {% endblock content %}

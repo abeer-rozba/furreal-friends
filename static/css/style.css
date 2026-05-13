@@ -226,6 +226,17 @@ form {
   margin-top: 0.5rem;
 }
 
+.auth-card .back-link {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  color: #7a7a7a;
+}
+
+.auth-card .back-link:hover {
+  color: #f4a261;
+}
+
 .members-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
