@@ -569,6 +569,43 @@ h3 {
   gap: 1rem;
 }
 
+.pet-detail-card {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pet-detail-image {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin-bottom: 1.5rem;
+}
+
+.pet-detail-name {
+  margin-bottom: 0.5rem;
+}
+
+.pet-detail-subtitle {
+  font-size: 1.05rem;
+  color: #7a7a7a;
+  margin-bottom: 1rem;
+}
+
+.pet-status {
+  background: #fff9f4;
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1rem;
+  color: #5a4636;
+}
+
+.pet-owner {
+  margin-top: 1rem;
+  color: #555;
+}
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;

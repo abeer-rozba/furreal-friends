@@ -1,30 +1,43 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <img src="{{pet.photo}}" alt="A photo of a {{pet.species}}" width="400px">
-  <h3>{{pet.pet_name}}</h3>
-  <p>{{pet.pet_age}} {% if pet.pet_age == 1 %}year{% else %}years{% endif %} old {{pet.breed}} {{pet.species}}</p>
-  {% if pet.isFixed and pet.gender == "Male" %}
-  <p>{{pet.pet_name}} is neutered!</p>
-  {% elif pet.isFixed and pet.gender == "Female" %}
-  <p>{{pet.pet_name}} is spayed!</p>
-  {% elif not pet.isFixed and pet.gender == "Male"%}
-  <p>{{pet.pet_name}} is not neutered!</p>
-  {% elif not pet.isFixed and pet.gender == "Female"%}
-  <p>{{pet.pet_name}} is not spayed!</p>
+<section class="pet-detail-card card">
+    <img src="{{ pet.photo }}" alt="{{ pet.species }}" class="pet-detail-image">
+    <h1 class="pet-detail-name">{{ pet.pet_name }}</h1>
+    <p class="pet-detail-subtitle"> {{ pet.pet_age }}{% if pet.pet_age == 1 %} year
+    {% else %} years {% endif %}old {{ pet.breed }} {{ pet.species }}</p>
+    {% if pet.isFixed and pet.gender == "Male" %}
+    <p class="pet-status">{{pet.pet_name}} is neutered!</p>
+    {% elif pet.isFixed and pet.gender == "Female" %}
+    <p class="pet-status">{{pet.pet_name}} is spayed!</p>
+    {% elif not pet.isFixed and pet.gender == "Male"%}
+    <p class="pet-status">{{pet.pet_name}} is not neutered!</p>
+    {% elif not pet.isFixed and pet.gender == "Female"%}
+    <p class="pet-status">{{pet.pet_name}} is not spayed!</p>
+    {% endif %}
+    {% if pet.owner.user.id != user.id %}
+    <p class="pet-owner">
+      <strong>Owner:</strong>
+      <a href="/community/{{ pet.owner.id }}">
+        {{ pet.owner.first_name }} {{ pet.owner.last_name }}
+      </a>
+    </p>
   {% endif %}
-  {% if pet.owner.user.id == user.id %}
+</section>
+
+<div class="event-actions">
+{% if pet.owner.user.id == user.id %}
   <form action="/pets/{{pet.id}}/update">
     {% csrf_token %}
-    <button>Update Pet</button>
+    <button type="submit" class="btn btn-primary">Update Pet</button>
   </form>
   <form action="/pets/{{pet.id}}/delete" method="POST">
     {% csrf_token %}
-    <button>Delete Pet</button>
+    <button type="submit" class="btn btn-danger">Delete Pet</button>
   </form>
-  <a href="/my-pets/">Back</a>
-  {% else %}
-  <p><b>Owner: </b><a href="/community/{{pet.owner.id}}">{{pet.owner.first_name}} {{pet.owner.last_name}}</a></p>
-  <a href="/pets/">Back</a>
-  {% endif %}
+  <a href="/my-pets/" class="back-link">← Back to My Pets</a>
+{% else %}
+<a href="/pets/" class="back-link">← Back to Pets</a>
+{% endif %}
+</div>
 {% endblock content %}
