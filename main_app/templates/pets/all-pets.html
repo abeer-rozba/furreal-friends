@@ -1,10 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-  {% for pet in pets %}
-  {% if pet.owner.user.id != user.id %}
-  <a href="/pets/{{pet.id}}">{{pet.pet_name}}</a>
+  <h2 class="section-title">Discover Pets</h2>
+  <a href="/" class="back-link">← Back</a>
+  <section class="pets-grid">
+    {% for pet in pets %}
+      {% if pet.owner.user.id != user.id %}
+        <div class="card pet-card">
+          <img src="{{pet.photo}}" alt="{{pet.breed}} {{pet.species}}">
+          <h3>{{pet.pet_name}}</h3>
+          <p class="pet-meta">
+            {{pet.pet_age}} years • {{ pet.breed }} {{ pet.species }}
+          </p>
+          <a href="/pets/{{pet.id}}" class="btn btn-primary">View Profile</a>
+        </div>
   {% endif %}
   {% endfor %}
-  <a href="/">Back</a>
+  </section>
 {% endblock content %}
