@@ -1,27 +1,37 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Furreal Friends</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-  <nav>
-      <a href="/">Home</a>
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="/" class="logo">Furreal Friends 🐾</a>
+    </div>
+    <div class="nav-center">
       <a href="/pets/">Pets</a>
       <a href="/community/">Community</a>
       <a href="/events/">Events</a>
+    </div>
+    <div class="nav-right">
     {% if user.is_authenticated %}
-      <form action="/auth/logout/" method="POST">
+      <form action="/auth/logout/" method="POST" class="logout-form">
         {% csrf_token %}
         <a href="/owners/{{user.owner.id}}">Profile</a>
-        <button>Log out</button>
+        <button type="submit" class="btn btn-secondary">Log out</button>
       </form>
     {% else %}
-      <a href="/signup">Sign up</a>
-      <a href="/auth/login">Log in</a>
+      <a href="/signup" class="btn btn-primary">Sign up</a>
+      <a href="/auth/login" class="btn btn-secondary">Log in</a>
     {% endif %}
+    </div>
   </nav>
+  <main class="page-container">
   {% block content %}{% endblock content %}
+  </main>
 </body>
 </html>
