@@ -21,6 +21,13 @@
     <button>Delete Event</button>
   </form>
   {% else %}
-    <button>Register</button>
+  <form action="/events/{{event.id}}/register/" method="POST">
+    {% csrf_token %}
+    {% if user.owner in event.attendees.all %}
+      <button type="submit">Unregister</button>
+    {% else %}
+      <button type="submit">Register</button>
+    {% endif %}
+  </form>
   {% endif %}
 {% endblock content %}

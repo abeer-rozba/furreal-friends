@@ -40,6 +40,18 @@ def toggle_follow(request, id):
     return redirect(f"/community/{id}")
 
 
+def toggle_register(request, id):
+    event = get_object_or_404(Event, id=id)
+    owner = request.user.owner
+
+    if owner in event.attendees.all():
+        event.attendees.remove(owner)
+    else:
+        event.attendees.add(owner)
+
+    return redirect(f"/events/{id}")
+
+
 class SignUpView(CreateView):
     template_name = "registration/signup.html"
     form_class = UserCreationForm

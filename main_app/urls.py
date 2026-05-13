@@ -25,4 +25,5 @@ urlpatterns = [
     path("events/my-events/", views.MyEventsListView.as_view()),
     path("events/<int:id>/update", views.EventUpdateView.as_view()),
     path("events/<int:id>/delete", views.EventDeleteView.as_view()),
+    path("events/<int:id>/register/", views.toggle_register),
 ]
