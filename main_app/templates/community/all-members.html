@@ -1,10 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <a href="/">Back</a>
-  {% for member in members %}
-  {% if member.user.id != user.id %}
-  <a href="/community/{{member.id}}"><h2>{{member.user.username}}</h2></a>
-  {% endif %}
-  {% endfor %}
+  <h2 class="section-title">Community Members</h2>
+  <a class="back-link" href="/">← Back</a>
+  <section class="members-grid">
+    {% for member in members %}
+      {% if member.user.id != user.id %}
+        <div class="card member-card">
+          <h3>{{member.user.username}}</h3>
+          <p>{{member.first_name}} {{member.last_name}}</p>
+          <a href="/community/{{member.id}}" class="btn btn-primary">View Profile</a>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </section>
+
 {% endblock content %}
