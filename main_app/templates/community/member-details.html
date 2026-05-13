@@ -1,22 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>{{member.first_name}}'s Profile</h1>
-  <p>Username: {{member.user.username}}</p>
-  <p>Phone Number: {{member.phone_number}}</p>
-  <p>City: {{member.city}}</p>
-  <p>Followers: {{member.followers.count}}</p>
-  <p>Following: {{member.following.count}}</p>
-  <a href="/community/{{member.id}}/pets">View {{member.first_name}}'s Pets</a>
-  {% if request.user.owner != member %}
-  <form action="/community/{{member.id}}/follow/" method="POST">
-    {% csrf_token %}
-    {% if member in request.user.owner.following.all %}
-      <button type="submit">Unfollow</button>
-    {% else %}
-      <button type="submit">Follow</button>
-    {% endif %}
-  </form>
-  {% endif %}
-  <a href="/community/">Back</a>
+  <section class="profile-card card">
+    <h1 class="profile-name">{{member.first_name}}{{member.last_name}}</h1>
+    <p class="profile-username">@{{member.user.username}}</p>
+
+    <div class="profile-info">
+      <p><strong>City: </strong>{{member.city}}</p>
+      <p><strong>Phone: </strong>{{member.phone_number}}</p>
+    </div>
+
+    <div class="profile-stats">
+      <div>
+        <h3>{{member.followers.count}}</h3>
+        <p>Followers</p>
+      </div>
+      <div>
+        <h3>{{member.following.count}}</h3>
+        <p>Following</p>
+      </div>
+    </div>
+
+    <div class="profile-actions">
+      <a href="/community/{{member.id}}/pets" class="btn btn-secondary">
+        View {{member.first_name}}'s Pets
+      </a>
+
+      {% if request.user.owner != member %}
+        <form action="/community/{{member.id}}/follow/" method="POST">
+        {% csrf_token %}
+          {% if member in request.user.owner.following.all %}
+            <button type="submit" class="btn btn-secondary">Unfollow</button>
+          {% else %}
+            <button type="submit" class="btn btn-primary">Follow</button>
+          {% endif %}
+        </form>
+      {% endif %}
+    </div>
+    <a href="/community/" class="back-link">← Back to community</a>
+  </section>
 {% endblock content %}
