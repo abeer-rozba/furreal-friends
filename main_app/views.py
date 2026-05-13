@@ -200,6 +200,24 @@ class EventDetailView(DetailView):
     context_object_name = "event"
     pk_url_kwarg = "id"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        if self.request.user.is_authenticated:
+            owner = self.request.user.owner
+        else:
+            owner = None
+
+        event = self.get_object()
+
+        followed_attendees = []
+
+        if owner:
+            followed_attendees = event.attendees.filter(id__in=owner.following.all())
+
+        context["followed_attendees"] = followed_attendees
+        return context
+
 
 class MyEventsListView(ListView):
     model = Event

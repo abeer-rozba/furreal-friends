@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+  {% if followed_attendees %}
+    {% for attendee in followed_attendees  %}
+      <p><a href="/community/{{attendee.id}}">{{attendee.first_name}} {{attendee.last_name}}</a>, whom you follow, is attending this event!</p>
+    {% endfor %}
+  {% endif %}
   <img src="{{event.image}}" width="500px">
   <h1>{{event.title}} | {{event.location}}</h1>
   <h4>Hosted by: <a href="/community/{{event.host.id}}">{{event.host}}</a></h4>
