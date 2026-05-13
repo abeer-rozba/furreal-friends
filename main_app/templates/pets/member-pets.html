@@ -1,11 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h3>{{member.first_name}}'s Pets:</h3>
-  {% for pet in member.pets.all %}
-  <a href="/pets/{{pet.id}}">{{pet.pet_name}}</a>
-  {% empty %}
-    <p>{{member.first_name}} has not added any pets yet.</p>
-  {% endfor %}
-  <a href="/community/{{pet.owner.id}}">Back</a>
+<section class="pet-page">
+  <h2 class="section-title">{{member.first_name}}'s Pets:</h2>
+  <a href="/community/{{member.id}}" class="back-link">← Back</a>
+  <div class="pets-grid">
+    {% for pet in member.pets.all %}
+      <div class="card pet-card">
+        <img src="{{pet.photo}}" alt="{{pet.species}}" class="pet-image">
+        <h3 class="pet-name">{{pet.pet_name}}</h3>
+        <p class="pet-species">{{pet.species}}</p>
+        <a href="/pets/{{pet.id}}" class="btn btn-primary">View Pet</a>
+      </div>
+    {% empty %}
+      <p class="empty-state">{{member.first_name}} has not added any pets yet.</p>
+    {% endfor %}
+  </div>
+</section>
 {% endblock content %}
